@@ -279,7 +279,10 @@ globalkeys = awful.util.table.join(
             if client.focus then client.focus:raise() end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
-
+	
+	-- Lockscreen
+	awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end)
+	
     -- Volume Control
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 9%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 9%-") end),
@@ -467,5 +470,7 @@ end
 ---{{{ Things to run at the beginning
 -- Launch the network manager applet
 run_once("nm-applet")
+-- Launch the app to control the lock screen
+run_once("xscreensaver")
 
 --awful.hooks.timer.register(10, function () hook_fraxbat(fraxbat,'BAT0') end)
